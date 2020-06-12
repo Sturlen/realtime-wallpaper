@@ -1,5 +1,6 @@
 {
   "name": "live-wallpaper-demo",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +11,11 @@
     "@types/node": "^12.12.47",
     "@types/react": "^16.9.36",
     "@types/react-dom": "^16.9.8",
+    "eslint": "^7.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "suncalc": "^1.8.0",
     "typescript": "^3.7.5"
   },
   "scripts": {
