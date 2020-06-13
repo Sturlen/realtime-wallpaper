@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import logo from "./logo.svg"
 import "./App.css"
 import SunCalc from "suncalc"
+import { useTimeOfDay } from "./TimeOfDay"
 
 const date = new Date(Date.now())
 
@@ -16,7 +17,7 @@ const testlong = 25.75195
 const times = SunCalc.getTimes(date, testlat, testlong)
 
 function App(): JSX.Element {
-  const [progress, setProgress] = useState(0)
+  const [state, actions] = useTimeOfDay()
 
   return (
     <div className="App">
@@ -33,14 +34,16 @@ function App(): JSX.Element {
             SunCalc.getPosition(new Date(Date.now()), 58.946047, 5.694283)
               .altitude}
         </p>
-        <p>{"progress " + progress}</p>
+        <p>{"progress " + state.progress}</p>
         <input
           type="range"
           min="0"
           max="1"
           defaultValue="0"
           step={0.0000000000000000000000000001}
-          onChange={(e): void => setProgress(Number.parseFloat(e.target.value))}
+          onChange={(e): void =>
+            actions.setProgress(Number.parseFloat(e.target.value))
+          }
         ></input>
       </header>
     </div>
