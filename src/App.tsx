@@ -22,7 +22,14 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img
+          src={logo}
+          className="App-logo"
+          alt="logo"
+          style={{
+            transform: `translateX(${state.progress * 100 - 50}vw)`,
+          }}
+        />
         <p>{`Sunrise: ${times.sunrise.toLocaleTimeString("no-nb", {
           hour12: false,
         })}`}</p>
@@ -36,14 +43,9 @@ function App(): JSX.Element {
         </p>
         <p>{"progress " + state.progress}</p>
         <input
-          type="range"
-          min="0"
-          max="1"
-          defaultValue="0"
+          type="time"
           step={0.0000000000000000000000000001}
-          onChange={(e): void =>
-            actions.setProgress(Number.parseFloat(e.target.value))
-          }
+          onChange={(e): void => actions.update(new Date())}
         ></input>
       </header>
     </div>

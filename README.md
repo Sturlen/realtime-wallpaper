@@ -1,6 +1,7 @@
 Time of day
 A day is 86 400 000 milliseconds
 Time of day is current milliseconds since midnight.
+(new Date("2020.06.15 12:00:00") - new Date("2020.06.15").getTime()) / 86400000
 
 Sunrise, sunset zones etc
 
