@@ -14,7 +14,7 @@ const testlat = 71.0598
 
 const testlong = 25.75195
 
-const times = SunCalc.getTimes(date, testlat, testlong)
+const times = SunCalc.getTimes(date, lat, long)
 
 function App(): JSX.Element {
   const [state, actions] = useTimeOfDay()
