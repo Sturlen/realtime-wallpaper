@@ -21,3 +21,34 @@
 .App-link {
   color: #61dafb;
 }
+
+.info-block {
+  border: 1px white solid;
+}
+
+.info-block p, .info-block code {
+  display: inline;
+}
+
+.time-control {
+  display: flex;
+  width: 100%;
+  margin: 2px 50px;
+  border-top: white 2px solid;
+  background-color: #101114;
+}
+
+.time-control input{
+  width: 100%;
+
+}
+
+.time-control *{
+  margin: 0px 10px;
+
+}
+
+.static-info {
+  display: flex;
+  flex-direction: row;
+}
