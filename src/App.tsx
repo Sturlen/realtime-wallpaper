@@ -2,9 +2,11 @@ import React, { useState } from "react"
 
 import "./App.css"
 import LocationWidget from "./LocationWidget"
+import TimeInputWidget from "./TimeInputWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 0, long: 0 })
+  const [current_date, setCurrentDate] = useState(new Date())
 
   return (
     <div className="App">
@@ -20,13 +22,10 @@ function App(): JSX.Element {
               setCoords(coords)
             }}
           />
-          <ul className="info-block">
-            <h2>Date</h2>
-            <p>Dawn at 00:00</p>
-            <input type="date"></input>
-            <br />
-            <p>Dusk at 00:00</p>
-          </ul>
+          <TimeInputWidget
+            display_date={current_date}
+            onNewDate={(date): void => setCurrentDate(date)}
+          />
           <ul className="info-block">
             <h2>Sun times</h2>
             <p>Dawn at 00:00</p>
