@@ -5,7 +5,7 @@ import LocationWidget from "./LocationWidget"
 import TimeInputWidget from "./TimeInputWidget"
 
 function App(): JSX.Element {
-  const [coords, setCoords] = useState({ lat: 0, long: 0 })
+  const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
   const [current_date, setCurrentDate] = useState(new Date())
 
   return (
