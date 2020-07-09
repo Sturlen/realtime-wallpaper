@@ -37,25 +37,24 @@
 }
 
 .time-control {
-  
-
   display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
   width: 100%;
   border-top: white 2px solid;
   background-color: #101114;
 }
 
 .time-control input{
-  width: 100%;
-
+  width: auto;
+  flex-grow: 1;
 }
 
 .time-control *{
   margin: 0px 10px;
-
 }
 
 .static-info {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
