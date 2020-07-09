@@ -17,6 +17,7 @@
     "@types/use-global-hook": "^0.1.2",
     "animejs": "^3.2.0",
     "moment": "^2.27.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
