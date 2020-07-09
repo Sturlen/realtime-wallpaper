@@ -3,10 +3,12 @@ import React, { useState } from "react"
 import "./App.css"
 import LocationWidget from "./LocationWidget"
 import TimeInputWidget from "./TimeInputWidget"
+import { TimeControlWidget } from "./TimeControlWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
   const [current_date, setCurrentDate] = useState(new Date())
+  const [current_TOD, setCurrentTOD] = useState(0)
 
   return (
     <div className="App">
@@ -45,11 +47,10 @@ function App(): JSX.Element {
         </ul>
       </main>
 
-      <footer className="time-control">
-        <h3>Time</h3>
-        <input type="range" step={1} min={0} max={86400} defaultValue={0} />
-        <h3>00:00:00</h3>
-      </footer>
+      <TimeControlWidget 
+      current={current_TOD} 
+      onTimeChange={(time): void => setCurrentTOD(time)}
+      />
     </div>
   )
 }
