@@ -1,34 +1,34 @@
 import React from "react"
 
-interface Location {
+export interface LatLong {
   lat: number
   long: number
 }
 
 interface LocWidgetProps {
-  coords: Location
-  onLocation?: (coords: Location) => void
+  coords: LatLong
+  onLatLong?: (coords: LatLong) => void
 }
 
-export default function LocationWidget({
+export default function LatLongWidget({
   coords: { lat, long },
-  onLocation,
+  onLatLong,
 }: LocWidgetProps): JSX.Element {
   const convertInput = (str: string): number => {
     return Number.parseFloat(str)
   }
   const updateLat = (lat_string: string): void => {
     const lat_n = convertInput(lat_string)
-    onLocation?.({ lat: lat_n, long })
+    onLatLong?.({ lat: lat_n, long })
   }
   const updateLong = (long_string: string): void => {
     const long_n = convertInput(long_string)
-    onLocation?.({ lat, long: long_n })
+    onLatLong?.({ lat, long: long_n })
   }
 
   return (
     <div className="info-block">
-      <h2>Location</h2>
+      <h2>LatLong</h2>
       <p>Lat: </p>
       <input
         type="number"
@@ -45,24 +45,24 @@ export default function LocationWidget({
           updateLong(e.target.value)
         }}
       />
-      <GeolocationButton onLocation={onLocation}>
-        Get location
-      </GeolocationButton>
+      <GeoLatLongButton onLatLong={onLatLong}>
+        Get LatLong
+      </GeoLatLongButton>
     </div>
   )
 }
 
 interface ButtonProps {
-  onLocation?: (coords: Location) => void
+  onLatLong?: (coords: LatLong) => void
   children?: JSX.Element | string | null
 }
 
-function GeolocationButton({ onLocation, children }: ButtonProps): JSX.Element {
+function GeoLatLongButton({ onLatLong, children }: ButtonProps): JSX.Element {
   const locate = (): void => {
     try {
       navigator.geolocation.getCurrentPosition((pos) => {
         const { latitude: lat, longitude: long } = pos.coords
-        onLocation?.({ lat, long })
+        onLatLong?.({ lat, long })
       })
     } catch (error) {
       console.log(error)

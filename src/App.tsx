@@ -4,6 +4,7 @@ import "./App.css"
 import LocationWidget from "./LocationWidget"
 import TimeInputWidget from "./TimeInputWidget"
 import { TimeControlWidget } from "./TimeControlWidget"
+import { SunTimesWidget } from "./SunTimesWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
@@ -20,7 +21,7 @@ function App(): JSX.Element {
         <ul className="static-info">
           <LocationWidget
             coords={coords}
-            onLocation={(coords): void => {
+            onLatLong={(coords): void => {
               setCoords(coords)
             }}
           />
@@ -28,12 +29,7 @@ function App(): JSX.Element {
             display_date={current_date}
             onNewDate={(date): void => setCurrentDate(date)}
           />
-          <ul className="info-block">
-            <h2>Sun times</h2>
-            <p>Dawn at 00:00</p>
-            <br />
-            <p>Dusk at 00:00</p>
-          </ul>
+          <SunTimesWidget date={current_date} location={coords}/>
         </ul>
         <ul className="info-block">
           <li>
