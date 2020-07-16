@@ -14,11 +14,16 @@ export const SunTimesWidget: React.FC<SunTimesPropsWidgetProps> = ({
   date = new Date(),
   location = { lat: 0, long: 0 },
 }) => {
-  const { dawn, dusk } = SunCalc.getTimes(date, location.lat, location.long)
+  const { dawn, dusk, solarNoon } = SunCalc.getTimes(
+    date,
+    location.lat,
+    location.long
+  )
   return (
     <div className="info-block">
       <h3>Sun times</h3>
       <SunTime label={"Dawn"} date={dawn} />
+      <SunTime label={"Noon"} date={solarNoon} />
       <SunTime label={"Dusk"} date={dusk} />
     </div>
   )
