@@ -5,7 +5,7 @@ import LocationWidget from "./components/LocationWidget"
 import TimeInputWidget from "./components/TimeInputWidget"
 import { TimeControlWidget } from "./components/TimeControlWidget"
 import { SunTimesWidget } from "./components/SunTimesWidget"
-import SunPositionWidget from "./components/SunPositionWidget"
+import SunPositionWidget from "./components/CalculatedSunPosition"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
@@ -33,7 +33,7 @@ function App(): JSX.Element {
         </ul>
         <ul className="static-info">
           <SunTimesWidget date={current_date} location={coords} />
-          <SunPositionWidget />
+          <SunPositionWidget date={current_date} time={current_TOD} />
         </ul>
       </main>
 

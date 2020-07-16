@@ -16,10 +16,10 @@ export default function SunPositionWidget({
     <div className="info-block">
       <h3>Sun Position</h3>
       <p>Altitude: </p>
-      <code>{sun_alitude_deg}</code>
+      <code>{sun_alitude_deg.toFixed(2)}</code>
       <br />
       <p>Azimuth: </p>
-      <code>{sun_azimuth_deg}</code>
+      <code>{sun_azimuth_deg.toFixed(2)}</code>
     </div>
   )
 }
