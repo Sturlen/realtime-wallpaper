@@ -14,11 +14,10 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Realtime wallpaper Demo</h1>
-      </header>
-
       <main className="content">
+        <header className="App-header">
+          <h1>Realtime wallpaper Demo</h1>
+        </header>
         <ul className="static-info">
           <LocationWidget
             coords={coords}
