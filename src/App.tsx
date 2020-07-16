@@ -30,9 +30,11 @@ function App(): JSX.Element {
             display_date={current_date}
             onNewDate={(date): void => setCurrentDate(date)}
           />
-          <SunTimesWidget date={current_date} location={coords} />
         </ul>
-        <SunPositionWidget />
+        <ul className="static-info">
+          <SunTimesWidget date={current_date} location={coords} />
+          <SunPositionWidget />
+        </ul>
       </main>
 
       <TimeControlWidget

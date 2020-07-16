@@ -28,7 +28,7 @@ export default function LatLongWidget({
 
   return (
     <div className="info-block">
-      <h2>LatLong</h2>
+      <h3>LatLong</h3>
       <p>Lat: </p>
       <input
         type="number"
@@ -37,6 +37,7 @@ export default function LatLongWidget({
           updateLat(e.target.value)
         }}
       />
+      <br />
       <p>Lon: </p>
       <input
         type="number"
@@ -45,7 +46,8 @@ export default function LatLongWidget({
           updateLong(e.target.value)
         }}
       />
-      <GeoLatLongButton onLatLong={onLatLong}>Get LatLong</GeoLatLongButton>
+      <br />
+      <GeoLatLongButton onLatLong={onLatLong}>Get Location</GeoLatLongButton>
     </div>
   )
 }

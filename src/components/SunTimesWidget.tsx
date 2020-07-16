@@ -17,13 +17,13 @@ export const SunTimesWidget: React.FC<SunTimesPropsWidgetProps> = ({
   const dawn = times.dawn
   const dusk = times.dusk
   return (
-    <ul className="info-block">
-      <h2>Sun times</h2>
+    <div className="info-block">
+      <h3>Sun times</h3>
       <p>Dawn at </p>
-      <code>{moment(dawn).format("LT")}</code>
+      <code>{moment(dawn).utc().format("HH:mm:ss")}</code>
       <br />
       <p>Dusk at </p>
-      <code>{moment(dusk).format("LT")}</code>
-    </ul>
+      <code>{moment(dusk).utc().format("HH:mm:ss")}</code>
+    </div>
   )
 }

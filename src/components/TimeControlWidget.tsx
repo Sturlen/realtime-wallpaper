@@ -30,7 +30,7 @@ export const TimeControlWidget: React.FC<TimeControlWidgetProps> = ({
           onTimeChange?.(e.target.valueAsNumber)
         }}
       />
-      <h3>{moment.unix(current).utc().format("LTS")}</h3>
+      <h3>{moment.unix(current).utc().format("HH:mm:ss")}</h3>
     </footer>
   )
 }
