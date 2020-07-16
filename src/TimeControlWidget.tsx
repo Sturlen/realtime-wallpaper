@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import moment from "moment";
-import { SECONDS_PER_24HR, momentFromTimeOfDay } from "./timeutils";
+import { SECONDS_PER_24HR } from "./timeutils";
 
 interface TimeControlWidgetProps {
     step?: number
