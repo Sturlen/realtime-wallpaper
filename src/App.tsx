@@ -33,7 +33,11 @@ function App(): JSX.Element {
         </ul>
         <ul className="static-info">
           <SunTimesWidget date={current_date} location={coords} />
-          <SunPositionWidget date={current_date} time={current_TOD} />
+          <SunPositionWidget
+            date={current_date}
+            time={current_TOD}
+            location={coords}
+          />
         </ul>
       </main>
 

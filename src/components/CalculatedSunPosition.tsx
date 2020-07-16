@@ -29,6 +29,7 @@ export default function CalculatedSunPosition({
     datetime.toDate(),
     location
   )
+
   return (
     <SunPositionWidget sun_alitude_deg={altitude} sun_azimuth_deg={azimuth} />
   )
