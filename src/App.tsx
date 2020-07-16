@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 
 import "./App.css"
-import LocationWidget from "./LocationWidget"
-import TimeInputWidget from "./TimeInputWidget"
-import { TimeControlWidget } from "./TimeControlWidget"
-import { SunTimesWidget } from "./SunTimesWidget"
-import SunPositionWidget from "./SunPositionWidget"
+import LocationWidget from "./components/LocationWidget"
+import TimeInputWidget from "./components/TimeInputWidget"
+import { TimeControlWidget } from "./components/TimeControlWidget"
+import { SunTimesWidget } from "./components/SunTimesWidget"
+import SunPositionWidget from "./components/SunPositionWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
