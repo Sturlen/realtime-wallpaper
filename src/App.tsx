@@ -5,6 +5,7 @@ import LocationWidget from "./LocationWidget"
 import TimeInputWidget from "./TimeInputWidget"
 import { TimeControlWidget } from "./TimeControlWidget"
 import { SunTimesWidget } from "./SunTimesWidget"
+import SunPositionWidget from "./SunPositionWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
@@ -31,16 +32,7 @@ function App(): JSX.Element {
           />
           <SunTimesWidget date={current_date} location={coords} />
         </ul>
-        <ul className="info-block">
-          <li>
-            <p>Sun altitude:</p>
-            <code>XX</code>
-          </li>
-          <li>
-            <p>Sun azimuth:</p>
-            <code>XX</code>
-          </li>
-        </ul>
+        <SunPositionWidget />
       </main>
 
       <TimeControlWidget
