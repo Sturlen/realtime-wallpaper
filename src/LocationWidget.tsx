@@ -45,9 +45,7 @@ export default function LatLongWidget({
           updateLong(e.target.value)
         }}
       />
-      <GeoLatLongButton onLatLong={onLatLong}>
-        Get LatLong
-      </GeoLatLongButton>
+      <GeoLatLongButton onLatLong={onLatLong}>Get LatLong</GeoLatLongButton>
     </div>
   )
 }

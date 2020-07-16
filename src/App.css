@@ -11,10 +11,9 @@
   justify-content: space-between;
 }
 
-.App-header { 
+.App-header {
   display: flex;
   flex-direction: column;
-  
 }
 
 .content {
@@ -32,7 +31,8 @@
   border: 1px white solid;
 }
 
-.info-block p, .info-block code {
+.info-block p,
+.info-block code {
   display: inline;
 }
 
@@ -45,12 +45,12 @@
   background-color: #101114;
 }
 
-.time-control input{
+.time-control input {
   width: auto;
   flex-grow: 1;
 }
 
-.time-control *{
+.time-control * {
   margin: 0px 10px;
 }
 

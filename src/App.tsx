@@ -29,7 +29,7 @@ function App(): JSX.Element {
             display_date={current_date}
             onNewDate={(date): void => setCurrentDate(date)}
           />
-          <SunTimesWidget date={current_date} location={coords}/>
+          <SunTimesWidget date={current_date} location={coords} />
         </ul>
         <ul className="info-block">
           <li>
@@ -43,9 +43,9 @@ function App(): JSX.Element {
         </ul>
       </main>
 
-      <TimeControlWidget 
-      current={current_TOD} 
-      onTimeChange={(time): void => setCurrentTOD(time)}
+      <TimeControlWidget
+        current={current_TOD}
+        onTimeChange={(time): void => setCurrentTOD(time)}
       />
     </div>
   )
