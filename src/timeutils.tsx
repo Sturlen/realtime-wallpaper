@@ -1,6 +1,8 @@
 import moment, { Moment } from "moment"
 export const SECONDS_PER_24HR = 60 * 60 * 24 // 86400
 
+export const isValidDate = (d: Date) => moment(d).isValid()
+
 export const stripTime = (datetime: Moment): Moment => {
   const zone = datetime.utcOffset()
   return datetime.hours(0).minutes(0).seconds(0).milliseconds(0).utcOffset(zone)
