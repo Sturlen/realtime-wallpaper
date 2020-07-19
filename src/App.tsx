@@ -1,17 +1,16 @@
 import React, { useState } from "react"
-
 import "./App.css"
 import LocationWidget from "./components/LocationWidget"
 import TimeInputWidget from "./components/TimeInputWidget"
 import { TimeControlWidget } from "./components/TimeControlWidget"
 import { SunTimesWidget } from "./components/SunTimesWidget"
 import SunPositionWidget from "./components/CalculatedSunPosition"
+import SunColorWidget from "./components/CalculatedColorWidget"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
   const [current_date, setCurrentDate] = useState(new Date())
   const [current_TOD, setCurrentTOD] = useState(0)
-
   return (
     <div className="App">
       <main className="content">
@@ -33,6 +32,11 @@ function App(): JSX.Element {
         <ul className="static-info">
           <SunTimesWidget date={current_date} location={coords} />
           <SunPositionWidget
+            date={current_date}
+            time={current_TOD}
+            location={coords}
+          />
+          <SunColorWidget
             date={current_date}
             time={current_TOD}
             location={coords}
