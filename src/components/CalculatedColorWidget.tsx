@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react"
+import React, { useMemo } from "react"
 import Color from "color"
 import SunCalc from "suncalc"
 import { LatLong } from "./LocationWidget"
@@ -91,7 +91,7 @@ export default function CalculatedColorWidget({
 
     // Create track
     return new ColorTrack(start_time, end_time, keys)
-  }, [date])
+  }, [date, location])
 
   const datetime = momentFromTimeOfDay(time, moment(date)).toDate()
   const color = track.getValue(datetime.valueOf())
