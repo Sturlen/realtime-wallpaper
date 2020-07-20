@@ -23,4 +23,17 @@ describe("The Time class", () => {
     const t2 = new TimeOfDay(MS_PER_DAY + 321.12).toMS()
     expect(t2).toEqual(MS_PER_DAY)
   })
+  it("when created with a value inside the range, toMS will return given value as an integer", () => {
+    const t0 = new TimeOfDay(123).toMS()
+    expect(t0).toEqual(123)
+
+    const t1 = new TimeOfDay(1212.1111).toMS()
+    expect(t1).toEqual(1212)
+
+    const t2 = new TimeOfDay(1212.9999).toMS()
+    expect(t2).toEqual(1212)
+
+    const t3 = new TimeOfDay(91235).toMS()
+    expect(t3).toEqual(91235)
+  })
 })
