@@ -1,3 +1,4 @@
+import moment from "moment"
 import { clamp } from "lodash"
 
 const MS_PER_DAY = 86400000 - 1
@@ -24,6 +25,14 @@ export default class TimeOfDay {
    */
   public toMS() {
     return this.ms
+  }
+
+  /**
+   * Adds current time to start of given day.
+   */
+  public toDate(day: Date): Date {
+    const midnight = moment(day).startOf("day")
+    return midnight.add(this.ms, "ms").add(1, "hour").toDate()
   }
 
   /**
