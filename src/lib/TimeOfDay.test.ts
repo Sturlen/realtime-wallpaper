@@ -39,6 +39,9 @@ describe("Constructor", () => {
     const t3 = new TimeOfDay(91235).toMS()
     expect(t3).toEqual(91235)
   })
+  it("when created with NaN, toMS will return 0", () => {
+    expect(new TimeOfDay(NaN).toMS()).toEqual(0)
+  })
 })
 
 describe("toDate", () => {
@@ -63,5 +66,11 @@ describe("static from", () => {
     expect(
       TimeOfDay.fromDate(new Date("1980-02-01T00:01:00.001")).toMS()
     ).toEqual(new TimeOfDay(60001).toMS())
+  })
+})
+
+describe("format", () => {
+  it("when given a MomentJS string, return time formatted as such", () => {
+    expect(TimeOfDay.fromDate(new Date("T00:01:00.001")).toMS()).toEqual(0)
   })
 })

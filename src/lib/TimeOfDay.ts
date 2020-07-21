@@ -18,7 +18,8 @@ export default class TimeOfDay {
    * will be clamped if outside
    */
   constructor(ms_since_midnight: number) {
-    const floored_ms = Math.floor(ms_since_midnight)
+    const input = ms_since_midnight
+    const floored_ms = !isNaN(input) ? Math.floor(ms_since_midnight) : 0
     this.ms = clamp(floored_ms, 0, MS_PER_DAY)
   }
 
