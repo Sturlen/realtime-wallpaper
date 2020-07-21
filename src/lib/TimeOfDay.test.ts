@@ -68,9 +68,3 @@ describe("static from", () => {
     ).toEqual(new TimeOfDay(60001).toMS())
   })
 })
-
-describe("format", () => {
-  it("when given a MomentJS string, return time formatted as such", () => {
-    expect(TimeOfDay.fromDate(new Date("T00:01:00.001")).toMS()).toEqual(0)
-  })
-})
