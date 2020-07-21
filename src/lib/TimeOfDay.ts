@@ -2,6 +2,9 @@ import moment from "moment"
 import { clamp } from "lodash"
 
 const MS_PER_DAY = 86400000 - 1
+const MS_PER_S = 1000
+const MS_PER_M = 60 * MS_PER_S
+const MS_PER_H = 24 * MS_PER_M
 
 /**
  * Time within a single day
@@ -33,6 +36,17 @@ export default class TimeOfDay {
   public toDate(day: Date): Date {
     const midnight = moment(day).startOf("day")
     return midnight.add(this.ms, "ms").add(1, "hour").toDate()
+  }
+
+  /**
+   * Get passed time within the given date.
+   * @param date
+   */
+  static fromDate(date: Date) {
+    const { hours, minutes, seconds, milliseconds } = moment(date).toObject()
+    const time_since_midnight =
+      hours * MS_PER_H + minutes * MS_PER_M + seconds * MS_PER_S + milliseconds
+    return new TimeOfDay(time_since_midnight)
   }
 
   /**

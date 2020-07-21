@@ -1,6 +1,9 @@
 import TimeOfDay from "./TimeOfDay"
+import { executionAsyncId } from "async_hooks"
 
 const MS_PER_DAY = 86400000 - 1
+
+const DATE_ZERO_MS = new Date(0)
 
 describe("Constructor", () => {
   it("when created with 0 or less ms, toMS will return 0", () => {
@@ -50,5 +53,15 @@ describe("toDate", () => {
 
     const t3 = new TimeOfDay(1234).toDate(new Date("2020-02-01T11:44:52.168Z"))
     expect(t3).toEqual(new Date("2020-02-01T00:00:01.234Z"))
+  })
+})
+describe("static from", () => {
+  it("when given a Date, extracts the time while disarding rest ", () => {
+    expect(
+      TimeOfDay.fromDate(new Date("2020-02-01T00:00:00.0000")).toMS()
+    ).toEqual(new TimeOfDay(0).toMS())
+    expect(
+      TimeOfDay.fromDate(new Date("1980-02-01T00:01:00.001")).toMS()
+    ).toEqual(new TimeOfDay(60001).toMS())
   })
 })
