@@ -1,15 +1,18 @@
 import React from "react"
 import moment from "moment"
 
-interface TimeInputProps {
+interface DateInputProps {
   display_date: Date
   onNewDate?: (date: Date) => void
 }
 
-export default function TimeInputWidget({
+/**
+ * Lets the user enter a date.
+ */
+export default function DateInputWidget({
   display_date,
   onNewDate,
-}: TimeInputProps): JSX.Element {
+}: DateInputProps): JSX.Element {
   const onChange = (date: Date | null): void => {
     if (date) {
       onNewDate?.(date)

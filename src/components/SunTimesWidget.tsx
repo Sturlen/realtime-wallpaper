@@ -3,7 +3,7 @@ import React from "react"
 import moment from "moment"
 import SunCalc from "suncalc"
 import { LatLong } from "./LocationWidget"
-import { isValidDate } from "../timeutils"
+import { isValidDate } from "../lib/DateUtil"
 
 interface SunTimesPropsWidgetProps {
   date?: Date

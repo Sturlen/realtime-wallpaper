@@ -20,7 +20,6 @@ export default class TimeOfDay {
   constructor(ms_since_midnight: number) {
     const floored_ms = Math.floor(ms_since_midnight)
     this.ms = clamp(floored_ms, 0, MS_PER_DAY)
-    MS_PER_DAY
   }
 
   /**

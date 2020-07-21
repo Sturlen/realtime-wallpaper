@@ -3,10 +3,11 @@ import Color from "color"
 import SunCalc from "suncalc"
 import { LatLong } from "./LocationWidget"
 import ColorTestWidget from "./ColorTestWidget"
+import { isValidDate } from "../lib/DateUtil"
 import { ColorTrack } from "@sturlen/timeline"
 import TrackKey from "@sturlen/timeline/dist/TrackKey"
 import moment from "moment"
-import { isValidDate, momentFromTimeOfDay } from "../timeutils"
+import TimeOfDay from "../lib/TimeOfDay"
 
 export interface SunTimes {
   readonly dawn: Date
@@ -41,7 +42,7 @@ interface CalculatedColorWidgetProps {
   /**
    * Observers time
    */
-  readonly time: number
+  readonly time: TimeOfDay
 
   /**
    * Date when the observer would see these colors.
@@ -93,7 +94,7 @@ export default function CalculatedColorWidget({
     return new ColorTrack(start_time, end_time, keys)
   }, [date, location])
 
-  const datetime = momentFromTimeOfDay(time, moment(date)).toDate()
+  const datetime = time.toDate(date)
   const color = track.getValue(datetime.valueOf())
 
   return <ColorTestWidget color={color} />

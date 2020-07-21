@@ -1,16 +1,17 @@
 import React, { useState } from "react"
 import "./App.css"
 import LocationWidget from "./components/LocationWidget"
-import TimeInputWidget from "./components/TimeInputWidget"
+import DateInputWidget from "./components/DateInputWidget"
 import { TimeControlWidget } from "./components/TimeControlWidget"
 import { SunTimesWidget } from "./components/SunTimesWidget"
 import SunPositionWidget from "./components/CalculatedSunPosition"
 import SunColorWidget from "./components/CalculatedColorWidget"
+import TimeOfDay from "./lib/TimeOfDay"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
   const [current_date, setCurrentDate] = useState(new Date())
-  const [current_TOD, setCurrentTOD] = useState(0)
+  const [display_time, setDisplayTime] = useState(new TimeOfDay(0))
   return (
     <div className="App">
       <main className="content">
@@ -24,7 +25,7 @@ function App(): JSX.Element {
               setCoords(coords)
             }}
           />
-          <TimeInputWidget
+          <DateInputWidget
             display_date={current_date}
             onNewDate={(date): void => setCurrentDate(date)}
           />
@@ -33,20 +34,20 @@ function App(): JSX.Element {
           <SunTimesWidget date={current_date} location={coords} />
           <SunPositionWidget
             date={current_date}
-            time={current_TOD}
+            time={display_time}
             location={coords}
           />
           <SunColorWidget
             date={current_date}
-            time={current_TOD}
+            time={display_time}
             location={coords}
           />
         </ul>
       </main>
 
       <TimeControlWidget
-        current={current_TOD}
-        onTimeChange={(time): void => setCurrentTOD(time)}
+        current={display_time}
+        onTimeChange={(time): void => setDisplayTime(time)}
       />
     </div>
   )

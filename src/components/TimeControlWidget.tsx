@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from "react"
 import moment from "moment"
-import { SECONDS_PER_24HR } from "../timeutils"
+import TimeOfDay from "../lib/TimeOfDay"
 
 interface TimeControlWidgetProps {
   step?: number
-  current?: number
-  onTimeChange?: (time: number) => void
+  current?: TimeOfDay
+  onTimeChange?: (time: TimeOfDay) => void
 }
 
 /**
  * Works in seconds per day
  */
 export const TimeControlWidget: React.FC<TimeControlWidgetProps> = ({
-  step = 1,
-  current = 0,
+  step = 1000,
+  current = new TimeOfDay(0),
   onTimeChange,
 }) => {
   return (
@@ -24,13 +24,13 @@ export const TimeControlWidget: React.FC<TimeControlWidgetProps> = ({
         type="range"
         step={step}
         min={0}
-        max={SECONDS_PER_24HR - 1}
-        value={current}
+        max={TimeOfDay.MS_PER_DAY}
+        value={current.toMS()}
         onChange={(e): void => {
-          onTimeChange?.(e.target.valueAsNumber)
+          onTimeChange?.(new TimeOfDay(e.target.valueAsNumber))
         }}
       />
-      <h3>{moment.unix(current).utc().format("HH:mm:ss")}</h3>
+      <h3>{moment(current.toMS()).utc().format("HH:mm:ss")}</h3>
     </footer>
   )
 }
