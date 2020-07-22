@@ -1,21 +1,21 @@
 /* eslint-disable react/prop-types */
 import React from "react"
-import moment from "moment"
+import moment, { Moment } from "moment"
 import SunCalc from "suncalc"
 import { LatLong } from "./LocationWidget"
 import { isValidDate } from "../lib/DateUtil"
 
 interface SunTimesPropsWidgetProps {
-  date?: Date
+  date: Moment
   location?: LatLong
 }
 
 export const SunTimesWidget: React.FC<SunTimesPropsWidgetProps> = ({
-  date = new Date(),
+  date,
   location = { lat: 0, long: 0 },
 }) => {
   const { dawn, dusk, solarNoon } = SunCalc.getTimes(
-    date,
+    date.toDate(),
     location.lat,
     location.long
   )

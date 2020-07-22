@@ -1,36 +1,48 @@
 /* eslint-disable react/prop-types */
-import React from "react"
-import moment from "moment"
-import TimeOfDay from "../lib/TimeOfDay"
+import React, { useMemo } from "react"
+import moment, { Moment } from "moment"
+import { clamp } from "lodash"
 
 interface TimeControlWidgetProps {
+  date: Moment
   step?: number
-  current?: TimeOfDay
-  onTimeChange?: (time: TimeOfDay) => void
+  time: Moment
+  onTimeChange?: (time: Moment) => void
 }
 
 /**
  * Works in seconds per day
  */
 export const TimeControlWidget: React.FC<TimeControlWidgetProps> = ({
+  date,
   step = 1000,
-  current = new TimeOfDay(0),
+  time,
   onTimeChange,
 }) => {
+  const [input_offset, min, max] = useMemo(() => {
+    const input_offset = date.utcOffset()
+    const min = date.startOf("day").valueOf()
+    const max = date.endOf("day").valueOf()
+    return [input_offset, min, max]
+  }, [date])
+
+  const clamped_time = clamp(time.valueOf(), min, max)
+
   return (
     <footer className="time-control">
       <h3>Time</h3>
       <input
         type="range"
         step={step}
-        min={0}
-        max={TimeOfDay.MS_PER_DAY}
-        value={current.toMS()}
+        min={min}
+        max={max}
+        value={clamped_time}
         onChange={(e): void => {
-          onTimeChange?.(new TimeOfDay(e.target.valueAsNumber))
+          const ms = e.target.valueAsNumber
+          onTimeChange?.(moment(ms).utcOffset(input_offset))
         }}
       />
-      <h3>{moment(current.toMS()).utc().format("HH:mm:ss")}</h3>
+      <h3>{time.format("HH:mm:ss")}</h3>
     </footer>
   )
 }

@@ -6,12 +6,25 @@ import { TimeControlWidget } from "./components/TimeControlWidget"
 import { SunTimesWidget } from "./components/SunTimesWidget"
 import SunPositionWidget from "./components/CalculatedSunPosition"
 import SunColorWidget from "./components/CalculatedColorWidget"
-import TimeOfDay from "./lib/TimeOfDay"
+import moment, { Moment } from "moment"
+import { setTime } from "./lib/DateUtil"
 
 function App(): JSX.Element {
   const [coords, setCoords] = useState({ lat: 59.9, long: 10.7 })
-  const [current_date, setCurrentDate] = useState(new Date())
-  const [display_time, setDisplayTime] = useState(new TimeOfDay(0))
+
+  const [datetime, setDatetime] = useState(new Date())
+  const time = moment(datetime)
+  const date = moment(datetime).startOf("day")
+
+  const updateTime = (new_time: Moment) => {
+    const new_datetime = setTime(date, new_time)
+    setDatetime(new_datetime.toDate())
+  }
+
+  const updateDate = (new_date: Moment) => {
+    setDatetime(setTime(new_date, time).toDate())
+  }
+
   return (
     <div className="App">
       <main className="content">
@@ -26,28 +39,21 @@ function App(): JSX.Element {
             }}
           />
           <DateInputWidget
-            display_date={current_date}
-            onNewDate={(date): void => setCurrentDate(date)}
+            display_date={date}
+            onNewDate={(date): void => updateDate(date)}
           />
         </ul>
         <ul className="static-info">
-          <SunTimesWidget date={current_date} location={coords} />
-          <SunPositionWidget
-            date={current_date}
-            time={display_time}
-            location={coords}
-          />
-          <SunColorWidget
-            date={current_date}
-            time={display_time}
-            location={coords}
-          />
+          <SunTimesWidget date={date} location={coords} />
+          <SunPositionWidget time={time} location={coords} />
+          <SunColorWidget time={time} location={coords} />
         </ul>
       </main>
 
       <TimeControlWidget
-        current={display_time}
-        onTimeChange={(time): void => setDisplayTime(time)}
+        date={date}
+        time={time}
+        onTimeChange={(time): void => updateTime(time)}
       />
     </div>
   )

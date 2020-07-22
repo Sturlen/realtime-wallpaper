@@ -2,12 +2,11 @@ import React from "react"
 import SunPositionWidget from "./SunPositionWidget"
 import { LatLong } from "./LocationWidget"
 import { SunPosition } from "../SunPosition"
-import TimeOfDay from "../lib/TimeOfDay"
+import { Moment } from "moment"
 
 interface CalculatedSunPositionProps {
   location?: LatLong
-  date?: Date
-  time?: TimeOfDay
+  time: Moment
 }
 
 const default_location: LatLong = {
@@ -19,12 +18,10 @@ const default_location: LatLong = {
  * HOC which calculates the sun position from date, time and location of the obeserver.
  */
 export default function CalculatedSunPosition({
-  date = new Date(),
   location = default_location,
-  time = new TimeOfDay(0),
+  time,
 }: CalculatedSunPositionProps): JSX.Element {
-  const datetime = time.toDate(date)
-  const { altitude, azimuth } = SunPosition.fromSunCalc(datetime, location)
+  const { altitude, azimuth } = SunPosition.fromSunCalc(time.toDate(), location)
 
   return (
     <SunPositionWidget sun_alitude_deg={altitude} sun_azimuth_deg={azimuth} />

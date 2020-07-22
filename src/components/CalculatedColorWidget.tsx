@@ -6,8 +6,7 @@ import ColorTestWidget from "./ColorTestWidget"
 import { isValidDate } from "../lib/DateUtil"
 import { ColorTrack } from "@sturlen/timeline"
 import TrackKey from "@sturlen/timeline/dist/TrackKey"
-import moment from "moment"
-import TimeOfDay from "../lib/TimeOfDay"
+import moment, { Moment } from "moment"
 
 export interface SunTimes {
   readonly dawn: Date
@@ -40,14 +39,9 @@ interface CalculatedColorWidgetProps {
   readonly colors?: SunPositionColors
 
   /**
-   * Observers time
+   * Observers time and date
    */
-  readonly time: TimeOfDay
-
-  /**
-   * Date when the observer would see these colors.
-   */
-  readonly date: Date
+  readonly time: Moment
 
   /**
    * Location of the observer
@@ -65,7 +59,6 @@ interface CalculatedColorWidgetProps {
  * - Finish blend at key ""
  */
 export default function CalculatedColorWidget({
-  date,
   time,
   location,
 }: CalculatedColorWidgetProps): JSX.Element {
@@ -74,10 +67,10 @@ export default function CalculatedColorWidget({
     // TODO: move this and Date validation to its own function
 
     const { lat, long } = location
-    const times: SunTimes = SunCalc.getTimes(date, lat, long)
+    const times: SunTimes = SunCalc.getTimes(time.toDate(), lat, long)
 
-    const start_time = moment(date).startOf("day").valueOf()
-    const end_time = moment(date).endOf("day").valueOf()
+    const start_time = moment(time).startOf("day").valueOf()
+    const end_time = moment(time).endOf("day").valueOf()
 
     // Build keys
     const keys: TrackKey<Color>[] = [
@@ -88,14 +81,13 @@ export default function CalculatedColorWidget({
       { position: times.sunriseEnd.valueOf(), value: Color("black") },
     ]
     // FIX: GetTimes is passing invalid dates, this messes up the blending
-    console.log("time", isValidDate(times.night))
+    //console.log("time", isValidDate(times.night))
 
     // Create track
     return new ColorTrack(start_time, end_time, keys)
-  }, [date, location])
+  }, [time, location])
 
-  const datetime = time.toDate(date)
-  const color = track.getValue(datetime.valueOf())
+  const color = track.getValue(time.valueOf())
 
   return <ColorTestWidget color={color} />
 }

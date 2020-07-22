@@ -1,9 +1,9 @@
 import React from "react"
-import moment from "moment"
+import moment, { Moment } from "moment"
 
 interface DateInputProps {
-  display_date: Date
-  onNewDate?: (date: Date) => void
+  display_date: Moment
+  onNewDate?: (date: Moment) => void
 }
 
 /**
@@ -13,14 +13,14 @@ export default function DateInputWidget({
   display_date,
   onNewDate,
 }: DateInputProps): JSX.Element {
-  const onChange = (date: Date | null): void => {
+  const onChange = (date: Moment | null): void => {
     if (date) {
       onNewDate?.(date)
     }
   }
 
-  const convertDate = (date: Date): string => {
-    return moment(date).format("YYYY-MM-DD")
+  const convertDate = (date: Moment): string => {
+    return date.format("YYYY-MM-DD")
   }
 
   return (
@@ -29,7 +29,7 @@ export default function DateInputWidget({
       <input
         type="date"
         value={convertDate(display_date)}
-        onChange={(e): void => onChange(e.target.valueAsDate)}
+        onChange={(e): void => onChange(moment(e.target.valueAsDate))}
       ></input>
       <br />
     </div>
