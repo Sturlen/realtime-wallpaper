@@ -24,7 +24,7 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "suncalc": "^1.8.0",
     "typescript": "^3.7.5",
     "use-global-hook": "^0.1.12"
